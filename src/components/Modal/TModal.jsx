@@ -25,6 +25,7 @@ export default function TModal({ record, setRecord, isModal, close }) {
 
   return (
     <Dialog
+      modal
       style={{ width: '50vw' }}
       footer={footerContent}
       visible={isModal.isOpen}

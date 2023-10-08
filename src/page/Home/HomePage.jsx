@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import Card from '../../components/Card/Card';
 import TModal from '../../components/Modal/TModal';
 import { Button } from 'primereact/button';
 import { v4 as uuidv4 } from 'uuid';
+import TCard from '../../components/Card/TCard';
 
 export default function HomePage() {
   const { data, isLoading } = useSelector((state) => state.todos);
@@ -45,9 +45,7 @@ export default function HomePage() {
       <Button label="Созадть" onClick={createModal} />
       <div>
         {arrData.length !== 0 ? (
-          arrData.map((item, index) => (
-            <Card key={index} record={item} edit={editModal} delete={createModal} />
-          ))
+          arrData.map((item, index) => <TCard key={index} record={item} />)
         ) : (
           <p>sdfsdfsf</p>
         )}

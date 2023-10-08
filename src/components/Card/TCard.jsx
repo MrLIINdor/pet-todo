@@ -1,13 +1,18 @@
 import React from 'react';
 import { Tag } from 'primereact/tag';
 import { Button } from 'primereact/button';
+import { Card } from 'primereact/card';
 
-export default function Card({ record, edit, deleted }) {
+export default function TCard({ record, edit, deleted }) {
   const footer = (
     <div className="flex flex-wrap justify-content-end gap-2">
-      <Button onClick={edit} label="Изменить" icon="pi pi-pencil" />
       <Button
-        onClick={deleted}
+        // onClick={edit}
+        label="Изменить"
+        icon="pi pi-pencil"
+      />
+      <Button
+        // onClick={deleted}
         label="Удалить"
         icon="pi pi-trash"
         className="p-button-outlined p-button-secondary"
