@@ -2,7 +2,6 @@ import React from 'react';
 import { Dialog } from 'primereact/dialog';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { InputText } from 'primereact/inputtext';
-import { InputSwitch } from 'primereact/inputswitch';
 import { Button } from 'primereact/button';
 import { useDispatch } from 'react-redux';
 import { createTodo, editTodo } from '../../app/api/todo';
@@ -52,10 +51,6 @@ export default function TModal({ record, setRecord, isModal, close }) {
           value={record.description}
           onChange={(e) => setRecord({ ...record, description: e.target.value })}
           className="input-d"
-        />
-        <InputSwitch
-          checked={record.completed}
-          onChange={(e) => setRecord({ ...record, completed: e.value })}
         />
       </div>
     </Dialog>

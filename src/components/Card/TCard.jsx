@@ -29,7 +29,7 @@ export default function TCard({ record, edit, deleted }) {
       }
       className="container"
     >
-      <p className="m-0">{record?.description}</p>
+      <p className="page">{record?.description}</p>
     </Card>
   );
 }

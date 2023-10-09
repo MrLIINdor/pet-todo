@@ -19,7 +19,7 @@ export default function HomePage() {
       id: uuidv4(),
       title: '',
       description: '',
-      completed: true,
+      completed: false,
     });
     setModalData((prevModalData) => ({ ...prevModalData, isOpen: true, isEdit: false }));
   }
