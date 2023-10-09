@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import TModal from '../../components/Modal/TModal';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'primereact/button';
 import { v4 as uuidv4 } from 'uuid';
+import TModal from '../../components/Modal/TModal';
 import TCard from '../../components/Card/TCard';
+import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
+import { deleteTodo } from '../../app/api/todo';
+import './HomePage.css';
 
 export default function HomePage() {
+  const dispatch = useDispatch();
   const { data, isLoading } = useSelector((state) => state.todos);
   const [todoData, setTodoData] = useState({});
-  const [arrData, setArrData] = useState([]);
   const [modalData, setModalData] = useState({ isOpen: false, isEdit: false });
 
   function createModal() {
@@ -21,7 +24,7 @@ export default function HomePage() {
     setModalData((prevModalData) => ({ ...prevModalData, isOpen: true, isEdit: false }));
   }
 
-  async function editModal(todo) {
+  function editModal(todo) {
     setTodoData({
       id: todo.id,
       title: todo.title,
@@ -31,26 +34,39 @@ export default function HomePage() {
     setModalData((prevModalData) => ({ ...prevModalData, isOpen: true, isEdit: true }));
   }
 
+  function deleteModal(todoId) {
+    confirmDialog({
+      message: 'Вы уверены, что хотите удалить задачу ?',
+      header: 'Удаление',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        dispatch(deleteTodo(todoId));
+      },
+      reject: () => {},
+    });
+  }
+
   function closeModal() {
     setModalData((prevModalData) => ({ ...prevModalData, isOpen: false, isEdit: false }));
   }
 
-  useEffect(() => {
-    setArrData(data);
-  }, [data]);
-  console.log(arrData);
-
   return (
     <div>
-      <Button label="Созадть" onClick={createModal} />
+      <div className="box-button">
+        <Button label="Созадть" onClick={createModal} />
+      </div>
       <div>
-        {arrData.length !== 0 ? (
-          arrData.map((item, index) => <TCard key={index} record={item} />)
+        {data.length !== 0 ? (
+          data.map((item, index) => (
+            <TCard key={index} record={item} edit={editModal} deleted={deleteModal} />
+          ))
         ) : (
-          <p>sdfsdfsf</p>
+          <div className="container-page">
+            <p>Пока нет задач</p>
+          </div>
         )}
       </div>
-
+      <ConfirmDialog />
       <TModal record={todoData} setRecord={setTodoData} isModal={modalData} close={closeModal} />
     </div>
   );

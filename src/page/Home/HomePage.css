@@ -1,0 +1,14 @@
+.box-button {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 2em;
+}
+
+.container-page {
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}

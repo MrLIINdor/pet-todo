@@ -5,7 +5,7 @@ import { InputText } from 'primereact/inputtext';
 import { InputSwitch } from 'primereact/inputswitch';
 import { Button } from 'primereact/button';
 import { useDispatch } from 'react-redux';
-import { createTodo, deleteTodo, editTodo } from '../../app/api/todo';
+import { createTodo, editTodo } from '../../app/api/todo';
 import './TModal.css';
 
 export default function TModal({ record, setRecord, isModal, close }) {
@@ -16,32 +16,42 @@ export default function TModal({ record, setRecord, isModal, close }) {
     close();
   }
 
+  function updateTodo() {
+    dispatch(editTodo({ ...record }));
+    close();
+  }
+
   const footerContent = (
     <div>
-      <Button label="No" icon="pi pi-times" onClick={close} className="p-button-text" />
-      <Button label="Yes" icon="pi pi-check" onClick={addTodo} />
+      <Button label="Отмена" icon="pi pi-times" onClick={close} className="p-button-text" />
+      <Button
+        label={isModal.isEdit ? 'Изменить' : 'Создать'}
+        icon="pi pi-check"
+        onClick={isModal.isEdit ? updateTodo : addTodo}
+      />
     </div>
   );
 
   return (
     <Dialog
       modal
-      style={{ width: '50vw' }}
+      header={isModal.isEdit ? 'Изменение' : 'Создание'}
+      className="box"
       footer={footerContent}
       visible={isModal.isOpen}
       onHide={close}
     >
       <div className="container">
         <InputText
+          placeholder="Название"
           value={record.title}
           onChange={(e) => setRecord({ ...record, title: e.target.value })}
         />
         <InputTextarea
+          placeholder="Описание"
           value={record.description}
           onChange={(e) => setRecord({ ...record, description: e.target.value })}
           className="input-d"
-          rows={5}
-          cols={30}
         />
         <InputSwitch
           checked={record.completed}

@@ -2,20 +2,17 @@ import React from 'react';
 import { Tag } from 'primereact/tag';
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
+import './TCard.css';
 
 export default function TCard({ record, edit, deleted }) {
   const footer = (
-    <div className="flex flex-wrap justify-content-end gap-2">
+    <div className="container-button">
+      <Button onClick={() => edit(record)} label="Изменить" icon="pi pi-pencil" />
       <Button
-        // onClick={edit}
-        label="Изменить"
-        icon="pi pi-pencil"
-      />
-      <Button
-        // onClick={deleted}
+        onClick={() => deleted(record.id)}
         label="Удалить"
         icon="pi pi-trash"
-        className="p-button-outlined p-button-secondary"
+        className="p-button-outlined p-button-danger"
       />
     </div>
   );
@@ -24,8 +21,13 @@ export default function TCard({ record, edit, deleted }) {
     <Card
       footer={footer}
       title={record?.title}
-      subTitle={<Tag value="Primary" severity={record?.completed ? 'success' : 'warning'} />}
-      className="md:w-25rem"
+      subTitle={
+        <Tag
+          value={record?.completed ? 'Выполнино' : 'Начато'}
+          severity={record?.completed ? 'success' : 'warning'}
+        />
+      }
+      className="container"
     >
       <p className="m-0">{record?.description}</p>
     </Card>

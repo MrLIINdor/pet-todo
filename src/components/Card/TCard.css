@@ -1,0 +1,9 @@
+.container {
+  width: 20rem !important;
+}
+
+.container-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
