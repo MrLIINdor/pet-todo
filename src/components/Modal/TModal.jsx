@@ -36,23 +36,23 @@ export default function TModal({ record, setRecord, isModal, close }) {
       modal
       header={isModal.isEdit ? 'Изменение' : 'Создание'}
       className="box"
+      contentStyle={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
       footer={footerContent}
       visible={isModal.isOpen}
       onHide={close}
     >
-      <div className="container">
-        <InputText
-          placeholder="Название"
-          value={record.title}
-          onChange={(e) => setRecord({ ...record, title: e.target.value })}
-        />
-        <InputTextarea
-          placeholder="Описание"
-          value={record.description}
-          onChange={(e) => setRecord({ ...record, description: e.target.value })}
-          className="input-d"
-        />
-      </div>
+      <InputText
+        placeholder="Название"
+        value={record.title}
+        onChange={(e) => setRecord({ ...record, title: e.target.value })}
+      />
+      <InputTextarea
+        autoResize
+        placeholder="Описание"
+        value={record.description}
+        onChange={(e) => setRecord({ ...record, description: e.target.value })}
+        className="input-d"
+      />
     </Dialog>
   );
 }
