@@ -4,11 +4,45 @@
   margin-bottom: 2em;
 }
 
-.container-page {
+.button-create {
+  margin-top: 1em;
+}
+
+.page-task {
   font-size: 20px;
   font-weight: 600;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #fff;
+}
+
+.container-card {
+  display: grid;
+  gap: 3em;
+  grid-template-columns: repeat(auto-fill, minmax(30em, 1fr));
+  justify-items: center;
+}
+
+.container-box {
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 485px) {
+  .container-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 1025px) and (min-width: 485px) {
+  .container-card {
+    display: grid;
+    gap: 3em;
+    grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
+    justify-items: center;
+  }
 }

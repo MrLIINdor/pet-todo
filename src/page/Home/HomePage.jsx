@@ -38,6 +38,8 @@ export default function HomePage() {
     confirmDialog({
       message: 'Вы уверены, что хотите удалить задачу ?',
       header: 'Удаление',
+      acceptLabel: 'Да',
+      rejectLabel: 'Нет',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         dispatch(deleteTodo(todoId));
@@ -53,17 +55,17 @@ export default function HomePage() {
   return (
     <div>
       <div className="box-button">
-        <Button label="Созадть" onClick={createModal} />
+        <Button className="button-create" label="Созадть" onClick={createModal} />
       </div>
-      <div>
+      <div className="container-box">
         {data.length !== 0 ? (
-          data.map((item, index) => (
-            <TCard key={index} record={item} edit={editModal} deleted={deleteModal} />
-          ))
-        ) : (
-          <div className="container-page">
-            <p>Пока нет задач</p>
+          <div className="container-card">
+            {data.map((item, index) => (
+              <TCard key={index} record={item} edit={editModal} deleted={deleteModal} />
+            ))}
           </div>
+        ) : (
+          <p className="page-task">Пока нет задач</p>
         )}
       </div>
       <ConfirmDialog />
