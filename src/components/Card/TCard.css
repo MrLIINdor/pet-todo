@@ -4,6 +4,19 @@
   box-shadow: -1rem 0 3rem #00000080;
 }
 
+.container-title {
+  overflow-wrap: anywhere;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.container-title__page {
+  margin: 0;
+  margin-right: 0.6em !important;
+  padding: 0;
+}
+
 .container-button {
   display: flex;
   justify-content: space-between;

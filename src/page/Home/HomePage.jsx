@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'primereact/button';
 import { v4 as uuidv4 } from 'uuid';
 import TModal from '../../components/Modal/TModal';
 import TCard from '../../components/Card/TCard';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
-import { deleteTodo } from '../../app/api/todo';
+import { deleteTodo, toggleTodo } from '../../app/api/todo';
 import './HomePage.css';
 
 export default function HomePage() {
@@ -48,6 +48,10 @@ export default function HomePage() {
     });
   }
 
+  function toggleComplete(todoId) {
+    dispatch(toggleTodo(todoId));
+  }
+
   function closeModal() {
     setModalData((prevModalData) => ({ ...prevModalData, isOpen: false, isEdit: false }));
   }
@@ -55,13 +59,19 @@ export default function HomePage() {
   return (
     <div>
       <div className="box-button">
-        <Button className="button-create" label="Созадть" onClick={createModal} />
+        <Button className="button-create" label="Создать" onClick={createModal} />
       </div>
       <div className="container-box">
         {data.length !== 0 ? (
           <div className="container-card">
             {data.map((item, index) => (
-              <TCard key={index} record={item} edit={editModal} deleted={deleteModal} />
+              <TCard
+                key={index}
+                record={item}
+                edit={editModal}
+                deleted={deleteModal}
+                toggle={toggleComplete}
+              />
             ))}
           </div>
         ) : (

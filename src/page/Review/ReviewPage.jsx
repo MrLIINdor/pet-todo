@@ -1,5 +1,9 @@
-import React from "react";
+import React from 'react';
 
 export default function ReviewPage() {
-  return <div>ReviewPage</div>;
+  return (
+    <div>
+      <p className="page-task">Скоро тут что-то появится</p>
+    </div>
+  );
 }

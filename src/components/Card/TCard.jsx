@@ -2,9 +2,10 @@ import React from 'react';
 import { Tag } from 'primereact/tag';
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
+import { Checkbox } from 'primereact/checkbox';
 import './TCard.css';
 
-export default function TCard({ record, edit, deleted }) {
+export default function TCard({ record, edit, deleted, toggle }) {
   const footer = (
     <div className="container-button">
       <Button onClick={() => edit(record)} label="Изменить" icon="pi pi-pencil" />
@@ -20,7 +21,12 @@ export default function TCard({ record, edit, deleted }) {
   return (
     <Card
       footer={footer}
-      title={record?.title}
+      title={
+        <div className="container-title">
+          <p className="container-title__page">{record?.title}</p>
+          <Checkbox checked={record?.completed} onChange={() => toggle(record.id)} />
+        </div>
+      }
       subTitle={
         <Tag
           value={record?.completed ? 'Выполнино' : 'Начато'}
