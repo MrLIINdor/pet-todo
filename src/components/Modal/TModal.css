@@ -4,9 +4,17 @@
 }
 
 .box {
-  max-width: 50%;
-  min-width: 30%;
+  width: 35vw !important;
+}
 
-  max-height: 45%;
-  min-height: 30%;
+.button-box {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+@media screen and (max-width: 1425px) {
+  .box {
+    width: 80vw !important;
+  }
 }

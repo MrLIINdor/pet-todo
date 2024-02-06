@@ -21,7 +21,7 @@ export default function TModal({ record, setRecord, isModal, close }) {
   }
 
   const footerContent = (
-    <div>
+    <div className="button-box">
       <Button label="Отмена" icon="pi pi-times" onClick={close} className="p-button-text" />
       <Button
         label={isModal.isEdit ? 'Изменить' : 'Создать'}
