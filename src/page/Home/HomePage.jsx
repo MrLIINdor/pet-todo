@@ -10,7 +10,7 @@ import './HomePage.css';
 
 export default function HomePage() {
   const dispatch = useDispatch();
-  const { data, isLoading } = useSelector((state) => state.todos);
+  const { data } = useSelector((state) => state.todos);
   const [todoData, setTodoData] = useState({});
   const [modalData, setModalData] = useState({ isOpen: false, isEdit: false });
 
@@ -59,7 +59,12 @@ export default function HomePage() {
   return (
     <div>
       <div className="box-button">
-        <Button className="button-create" label="Создать" onClick={createModal} />
+        <Button
+          className="button-create"
+          icon="pi pi-plus-circle"
+          label="Создать"
+          onClick={createModal}
+        />
       </div>
       <div className="container-box">
         {data.length !== 0 ? (

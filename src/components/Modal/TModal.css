@@ -13,6 +13,10 @@
   align-items: center;
 }
 
+.button-dialog {
+  font-weight: 500 !important;
+}
+
 @media screen and (max-width: 1425px) {
   .box {
     width: 80vw !important;

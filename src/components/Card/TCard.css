@@ -26,3 +26,7 @@
 .page {
   overflow-wrap: anywhere;
 }
+
+.button-cards {
+  font-weight: 500 !important;
+}

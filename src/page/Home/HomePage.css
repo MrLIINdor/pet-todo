@@ -5,6 +5,8 @@
 }
 
 .button-create {
+  color: #1f2d3f;
+  font-weight: 500 !important;
   margin-top: 1em;
 }
 

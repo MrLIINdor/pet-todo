@@ -22,8 +22,14 @@ export default function TModal({ record, setRecord, isModal, close }) {
 
   const footerContent = (
     <div className="button-box">
-      <Button label="Отмена" icon="pi pi-times" onClick={close} className="p-button-text" />
       <Button
+        className="p-button-text button-dialog"
+        label="Отмена"
+        icon="pi pi-times"
+        onClick={close}
+      />
+      <Button
+        className="button-dialog"
         label={isModal.isEdit ? 'Изменить' : 'Создать'}
         icon="pi pi-check"
         onClick={isModal.isEdit ? updateTodo : addTodo}

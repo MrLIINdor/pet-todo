@@ -8,12 +8,17 @@ import './TCard.css';
 export default function TCard({ record, edit, deleted, toggle }) {
   const footer = (
     <div className="container-button">
-      <Button onClick={() => edit(record)} label="Изменить" icon="pi pi-pencil" />
+      <Button
+        onClick={() => edit(record)}
+        label="Изменить"
+        icon="pi pi-pencil"
+        className="button-cards"
+      />
       <Button
         onClick={() => deleted(record.id)}
         label="Удалить"
         icon="pi pi-trash"
-        className="p-button-outlined p-button-danger"
+        className="p-button-outlined p-button-danger button-cards"
       />
     </div>
   );
