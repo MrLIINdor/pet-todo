@@ -34,7 +34,7 @@ export default function TCard({ record, edit, deleted, toggle }) {
       }
       subTitle={
         <Tag
-          value={record?.completed ? 'Выполнено' : 'Начато'}
+          value={record?.completed ? 'Выполнено' : 'В работе'}
           severity={record?.completed ? 'success' : 'warning'}
         />
       }

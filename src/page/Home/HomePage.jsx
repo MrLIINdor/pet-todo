@@ -20,6 +20,7 @@ export default function HomePage() {
       title: '',
       description: '',
       completed: false,
+      startDate: '',
     });
     setModalData((prevModalData) => ({ ...prevModalData, isOpen: true, isEdit: false }));
   }
@@ -30,6 +31,7 @@ export default function HomePage() {
       title: todo.title,
       description: todo.description,
       completed: todo.completed,
+      startDate: todo.startDate,
     });
     setModalData((prevModalData) => ({ ...prevModalData, isOpen: true, isEdit: true }));
   }
