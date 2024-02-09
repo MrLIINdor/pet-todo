@@ -65,7 +65,7 @@ export default function TModal({ record, setRecord, isModal, close }) {
         showTime
         dateFormat="dd.mm.yy"
         placeholder="Когда выполнить ?"
-        value={record.startDate !== '' ? new Date(record.startDate) : record.startDate}
+        value={record.startDate && new Date(record.startDate)}
         onChange={(e) => setRecord({ ...record, startDate: e.value.toString() })}
       />
     </Dialog>
