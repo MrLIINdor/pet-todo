@@ -4,6 +4,7 @@ import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
 import { Checkbox } from 'primereact/checkbox';
 import './TCard.css';
+import moment from 'moment';
 
 export default function TCard({ record, edit, deleted, toggle }) {
   const footer = (
@@ -41,6 +42,7 @@ export default function TCard({ record, edit, deleted, toggle }) {
       className="container"
     >
       <p className="page">{record?.description}</p>
+      <p className="page-date">До {moment(record?.startDate).format('DD.MM.YYYY HH:mm')}</p>
     </Card>
   );
 }

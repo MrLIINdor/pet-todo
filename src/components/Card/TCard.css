@@ -1,6 +1,7 @@
 .container {
   width: 20rem !important;
   height: fit-content;
+  position: relative;
   box-shadow: -1rem 0 3rem #00000080;
 }
 
@@ -8,7 +9,7 @@
   overflow-wrap: anywhere;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: flex-end;
 }
 
 .container-title__page {
@@ -25,6 +26,15 @@
 
 .page {
   overflow-wrap: anywhere;
+}
+
+.page-date {
+  position: absolute;
+  background: #83c688;
+  border-radius: 5px;
+  padding: 0.2em;
+  top: -25px;
+  right: -10px;
 }
 
 .button-cards {
