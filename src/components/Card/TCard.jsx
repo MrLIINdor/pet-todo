@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Tag } from 'primereact/tag';
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
@@ -7,6 +7,11 @@ import './TCard.css';
 import moment from 'moment';
 
 export default function TCard({ record, edit, deleted, toggle }) {
+  const [data, setData] = useState({
+    now: moment(moment().format('DD.MM.YYYY HH:mm'), 'DD.MM.YYYY HH:mm'),
+    dead: moment(moment(record?.startDate).format('DD.MM.YYYY HH:mm'), 'DD.MM.YYYY HH:mm'),
+  });
+
   const footer = (
     <div className="container-button">
       <Button
@@ -23,6 +28,37 @@ export default function TCard({ record, edit, deleted, toggle }) {
       />
     </div>
   );
+
+  function declensionNum(num, words) {
+    return words[
+      num % 100 > 4 && num % 100 < 20 ? 2 : [2, 0, 1, 1, 1, 2][num % 10 < 5 ? num % 10 : 5]
+    ];
+  }
+
+  function getDiffData(datanow, dataend) {
+    const differenceInYears = Math.abs(datanow.diff(dataend, 'years'));
+    const differenceInMonths = Math.abs(datanow.diff(dataend, 'months'));
+    const differenceInDays = Math.abs(datanow.diff(dataend, 'days'));
+    const differenceInTime = Math.abs(datanow.diff(dataend, 'minute'));
+
+    if (differenceInYears != 0) {
+      return `${differenceInYears} ${declensionNum(differenceInYears, ['год', 'года', 'лет'])}`;
+    } else if (differenceInMonths != 0) {
+      return `${differenceInMonths} ${declensionNum(differenceInMonths, [
+        'месяц',
+        'месяца',
+        'месяцев',
+      ])}`;
+    } else if (differenceInDays != 0) {
+      return `${differenceInDays} ${declensionNum(differenceInDays, ['день', 'дня', 'дней'])}`;
+    } else if (differenceInTime != 0) {
+      return `${differenceInTime} ${declensionNum(differenceInTime, [
+        'минута',
+        'минуты',
+        'минут',
+      ])}`;
+    }
+  }
 
   return (
     <Card
@@ -42,7 +78,11 @@ export default function TCard({ record, edit, deleted, toggle }) {
       className="container"
     >
       <p className="page">{record?.description}</p>
-      <p className="page-date">До {moment(record?.startDate).format('DD.MM.YYYY HH:mm')}</p>
+      {data.dead >= data.now ? (
+        <p className="page-date">До {moment(record?.startDate).format('DD.MM.YYYY HH:mm')}</p>
+      ) : (
+        <p className="page-date__deadlain">Просрочено на {getDiffData(data.now, data.dead)}</p>
+      )}
     </Card>
   );
 }

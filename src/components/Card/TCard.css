@@ -37,6 +37,15 @@
   right: -10px;
 }
 
+.page-date__deadlain {
+  position: absolute;
+  background: #f48fb1;
+  border-radius: 5px;
+  padding: 0.2em;
+  top: -25px;
+  right: -10px;
+}
+
 .button-cards {
   font-weight: 500 !important;
 }
