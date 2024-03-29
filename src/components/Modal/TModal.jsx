@@ -6,6 +6,7 @@ import { Button } from 'primereact/button';
 import { Calendar } from 'primereact/calendar';
 import { useDispatch } from 'react-redux';
 import { createTodo, editTodo } from '../../app/api/todo';
+import '../../locales/RU';
 import './TModal.css';
 
 export default function TModal({ record, setRecord, isModal, close }) {
@@ -63,6 +64,7 @@ export default function TModal({ record, setRecord, isModal, close }) {
       <Calendar
         showIcon
         showTime
+        locale="ru"
         dateFormat="dd.mm.yy"
         placeholder="Когда выполнить ?"
         value={record.startDate && new Date(record.startDate)}
