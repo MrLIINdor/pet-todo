@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo } from 'react';
 import { Tag } from 'primereact/tag';
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
@@ -7,10 +7,12 @@ import './TCard.css';
 import moment from 'moment';
 
 export default function TCard({ record, edit, deleted, toggle }) {
-  const [data, setData] = useState({
-    now: moment(moment().format('DD.MM.YYYY HH:mm'), 'DD.MM.YYYY HH:mm'),
-    dead: moment(moment(record?.startDate).format('DD.MM.YYYY HH:mm'), 'DD.MM.YYYY HH:mm'),
-  });
+  const data = useMemo(() => {
+    return {
+      now: moment(moment().format('DD.MM.YYYY HH:mm'), 'DD.MM.YYYY HH:mm'),
+      dead: moment(moment(record?.startDate).format('DD.MM.YYYY HH:mm'), 'DD.MM.YYYY HH:mm'),
+    };
+  }, [record]);
 
   const footer = (
     <div className="container-button">
@@ -39,7 +41,8 @@ export default function TCard({ record, edit, deleted, toggle }) {
     const differenceInYears = Math.abs(datanow.diff(dataend, 'years'));
     const differenceInMonths = Math.abs(datanow.diff(dataend, 'months'));
     const differenceInDays = Math.abs(datanow.diff(dataend, 'days'));
-    const differenceInTime = Math.abs(datanow.diff(dataend, 'minute'));
+    const differenceInHour = Math.abs(datanow.diff(dataend, 'hours'));
+    const differenceInTime = Math.abs(datanow.diff(dataend, 'minutes'));
 
     if (differenceInYears != 0) {
       return `${differenceInYears} ${declensionNum(differenceInYears, ['год', 'года', 'лет'])}`;
@@ -51,6 +54,8 @@ export default function TCard({ record, edit, deleted, toggle }) {
       ])}`;
     } else if (differenceInDays != 0) {
       return `${differenceInDays} ${declensionNum(differenceInDays, ['день', 'дня', 'дней'])}`;
+    } else if (differenceInHour != 0) {
+      return `${differenceInHour} ${declensionNum(differenceInHour, ['час', 'часа', 'часов'])}`;
     } else if (differenceInTime != 0) {
       return `${differenceInTime} ${declensionNum(differenceInTime, [
         'минута',
