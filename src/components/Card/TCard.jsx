@@ -14,6 +14,8 @@ export default function TCard({ record, edit, deleted, toggle }) {
     };
   }, [record]);
 
+  const header = record.avatar ? <img className="avatar" alt="Card" src={record.avatar} /> : '';
+
   const footer = (
     <div className="container-button">
       <Button
@@ -67,6 +69,7 @@ export default function TCard({ record, edit, deleted, toggle }) {
 
   return (
     <Card
+      header={header}
       footer={footer}
       title={
         <div className="container-title">

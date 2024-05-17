@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import todosSlice from '../api/todo';
+import notificationsSlice from '../api/notification';
 import drawSlice from '../api/draw';
 import {
   persistStore,
@@ -21,6 +22,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   todos: todosSlice.reducer,
+  notifications: notificationsSlice.reducer,
   draw: drawSlice.reducer,
 });
 

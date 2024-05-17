@@ -6,6 +6,7 @@ import TModal from '../../components/Modal/TModal';
 import TCard from '../../components/Card/TCard';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { deleteTodo, toggleTodo } from '../../app/api/todo';
+import { createNotification } from '../../app/api/notification';
 import './HomePage.css';
 
 export default function HomePage() {
@@ -20,6 +21,7 @@ export default function HomePage() {
       title: '',
       description: '',
       completed: false,
+      avatar: '',
       startDate: '',
     });
     setModalData((prevModalData) => ({ ...prevModalData, isOpen: true, isEdit: false }));
@@ -32,6 +34,7 @@ export default function HomePage() {
       description: todo.description,
       completed: todo.completed,
       startDate: todo.startDate,
+      avatar: todo.avatar,
     });
     setModalData((prevModalData) => ({ ...prevModalData, isOpen: true, isEdit: true }));
   }
@@ -45,6 +48,7 @@ export default function HomePage() {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         dispatch(deleteTodo(todoId));
+        dispatch(createNotification({ severity: 'warn', detail: 'Картачка удалена', life: 1500 }));
       },
       reject: () => {},
     });

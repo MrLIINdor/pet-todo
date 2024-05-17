@@ -49,3 +49,7 @@
 .button-cards {
   font-weight: 500 !important;
 }
+
+.avatar {
+  border-radius: 3px;
+}
