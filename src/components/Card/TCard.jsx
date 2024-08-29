@@ -86,10 +86,14 @@ export default function TCard({ record, edit, deleted, toggle }) {
       className="container"
     >
       <p className="page">{record?.description}</p>
-      {data.dead >= data.now ? (
-        <p className="page-date">До {moment(record?.startDate).format('DD.MM.YYYY HH:mm')}</p>
+      {record?.startDate.length !== 0 ? (
+        data.dead >= data.now ? (
+          <p className="page-date">До {moment(record?.startDate).format('DD.MM.YYYY HH:mm')}</p>
+        ) : (
+          <p className="page-date__deadlain">Просрочено на {getDiffData(data.now, data.dead)}</p>
+        )
       ) : (
-        <p className="page-date__deadlain">Просрочено на {getDiffData(data.now, data.dead)}</p>
+        <p className="page-date__no-deadlain">Без дедлайна</p>
       )}
     </Card>
   );
